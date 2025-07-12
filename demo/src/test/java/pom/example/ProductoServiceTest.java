@@ -12,7 +12,7 @@ public class ProductoServiceTest {
     @Test
     void testCrearProducto_red() {
         ProductoService service = new ProductoService();
-        Producto nuevo = new Producto(1, "Teclado", 29990.0);
+        Producto nuevo = new Producto(2, "Monitor", 492990.0);
 
     
         service.crearProducto(nuevo);
