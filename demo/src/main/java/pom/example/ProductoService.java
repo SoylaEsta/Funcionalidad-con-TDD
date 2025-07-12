@@ -8,9 +8,9 @@ public class ProductoService {
 
     // -------------------- CRUD LOCAL --------------------
 
-    public void crearProducto(Producto producto) {
+   /*  public void crearProducto(Producto producto) {
         repositorio.put(producto.getId(), producto);
-    }
+    }*/
 
     public Producto buscarProductoPorId(int id) {
         return repositorio.get(id);
@@ -37,13 +37,10 @@ public class ProductoService {
 
     // -------------------- CRUD FIREBASE --------------------
 
-    public void crearProductoFirebase(Producto producto) {
-        FirebaseConfig.inicializarFirebase();
-        DatabaseReference ref = FirebaseDatabase.getInstance()
-            .getReference("productos")
-            .child(String.valueOf(producto.getId()));
-        ref.setValueAsync(producto);
-    }
+     public void crearProductoFirebase(Producto producto) {
+       
+    } 
+
 
     public void buscarProductoPorIdFirebase(int id) {
         FirebaseConfig.inicializarFirebase();

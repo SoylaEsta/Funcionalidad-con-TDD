@@ -5,19 +5,20 @@ import pom.example.Producto;
 import static org.junit.jupiter.api.Assertions.*;
 
 
- // Este método aún NO existe → el test fallará
+ // Este método aún NO existe → el test fallará  → RED
 public class ProductoServiceTest {
 
    
     @Test
-    void testProductoInexistenteDebeFallar() {
+    void testCrearProducto_red() {
         ProductoService service = new ProductoService();
+        Producto nuevo = new Producto(1, "Teclado", 29990.0);
 
-        // No se ha creado este producto, por lo tanto debería ser null
-        Producto resultado = service.buscarProductoPorId(99);
+    
+        service.crearProducto(nuevo);
 
-        // Este assert va a FALLAR porque estamos forzando una condición falsa
-        assertNotNull(resultado);  // ← RED forzado
+        Producto resultado = service.buscarProductoPorId(1);
+        assertNotNull(resultado);
     }
 
 
