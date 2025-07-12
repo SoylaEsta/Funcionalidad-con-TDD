@@ -5,7 +5,7 @@ import pom.example.Producto;
 import static org.junit.jupiter.api.Assertions.*;
 
 
- // Este método aún NO existem → el test fallará
+ // Este método aún NO existe → el test fallará
 public class ProductoServiceTest {
 
    
