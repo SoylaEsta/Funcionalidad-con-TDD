@@ -1,0 +1,12 @@
+# Claves privadas
+firebase-key.json
+
+# Archivos de Maven
+/target
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# VS Code config
+.vscode/
