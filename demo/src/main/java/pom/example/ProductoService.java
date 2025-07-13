@@ -48,9 +48,9 @@ public class ProductoService {
 
 
     //----------------------------------
-    /*public List<Producto> listarProductos() {
+    public List<Producto> listarProductos() {
         return new ArrayList<>(repositorio.values());
-    }*/
+    }
     
     
     //----------------------------------
