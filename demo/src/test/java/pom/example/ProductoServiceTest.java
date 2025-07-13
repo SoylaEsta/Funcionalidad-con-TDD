@@ -12,7 +12,7 @@ public class ProductoServiceTest {
     void setUp() {
         service = new ProductoService();
     }
-
+    //CREAR PRODUCTO
     @Test
     void testCrearProducto_conIdDuplicado() {
         Producto p1 = new Producto(105, "Router", 24990.0);
@@ -31,4 +31,18 @@ public class ProductoServiceTest {
             service.crearProductoFirebase(null);
         });
     }
+    
+    //ACTUALIZAR PRODUCTO
+    @Test
+    void testActualizarProducto_inexistente() {
+        Producto nuevo = new Producto(5, "SSD 256GB", 39990.0);
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.actualizarProducto(nuevo);
+        });
+    }
+
+
+
 }
+
