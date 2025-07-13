@@ -141,4 +141,4 @@ cd Funcionalidad-con-TDD
 
 
 
-## Proyecto realizado por Gabriela Sepúlveda - @SoylaEsta 
+## Proyecto realizado por Gabriela Sepúlveda H - @SoylaEsta 

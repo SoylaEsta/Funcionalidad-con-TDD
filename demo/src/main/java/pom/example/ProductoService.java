@@ -36,7 +36,7 @@ public class ProductoService {
 
     public void eliminarProducto(int id) {
         if (!repositorio.containsKey(id)) {
-            System.out.println("⚠️ Producto con ID " + id + " no existe.");
+            System.out.println(" Producto con ID " + id + " no existe.");
         }
         repositorio.remove(id);
     }
