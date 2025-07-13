@@ -64,6 +64,15 @@ public class ProductoServiceTest {
     });
     }
 
+    @Test
+    void testEliminarProducto_existente() {
+    Producto p = new Producto(20, "Tablet", 79990.0);
+    service.crearProducto(p);
+
+    service.eliminarProducto(20);
+
+    assertFalse(service.existeProducto(20)); // el producto ya no debe estar
+    }
 
 }
 
