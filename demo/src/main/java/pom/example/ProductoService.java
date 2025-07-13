@@ -24,12 +24,12 @@ public class ProductoService {
         return repositorio.get(id);
     }
 
-   /*public void actualizarProducto(Producto producto) {
+    public void actualizarProducto(Producto producto) {
         if (!repositorio.containsKey(producto.getId())) {
             throw new IllegalArgumentException("Producto no encontrado");
         }
         repositorio.put(producto.getId(), producto);
-    } */
+    } 
 
     public void eliminarProducto(int id) {
         repositorio.remove(id);
