@@ -9,9 +9,9 @@ public class ProductoService {
     // -------------------- CRUD LOCAL --------------------
 
     public void crearProducto(Producto producto) {
-    validarIdUnico(producto.getId());
-    repositorio.put(producto.getId(), producto);
-}
+        validarIdUnico(producto.getId());
+        repositorio.put(producto.getId(), producto);
+    }
 
     private void validarIdUnico(int id) {
         if (repositorio.containsKey(id)) {
@@ -23,64 +23,54 @@ public class ProductoService {
         return repositorio.get(id);
     }
 
-    //----------------------------------
-    
     public void actualizarProducto(Producto producto) {
-    validarExistencia(producto.getId());
-    repositorio.put(producto.getId(), producto);
+        validarExistencia(producto.getId());
+        repositorio.put(producto.getId(), producto);
     }
 
     private void validarExistencia(int id) {
-    if (!repositorio.containsKey(id)) {
-        throw new IllegalArgumentException("Producto no encontrado");
+        if (!repositorio.containsKey(id)) {
+            throw new IllegalArgumentException("Producto no encontrado");
+        }
     }
-    }
-
-
-    //----------------------------------
 
     public void eliminarProducto(int id) {
-    if (!repositorio.containsKey(id)) {
-        System.out.println("⚠️ Producto con ID " + id + " no existe.");
-    }
-    repositorio.remove(id);
+        if (!repositorio.containsKey(id)) {
+            System.out.println("⚠️ Producto con ID " + id + " no existe.");
+        }
+        repositorio.remove(id);
     }
 
-
-    //----------------------------------
     public List<Producto> listarProductos() {
         return new ArrayList<>(repositorio.values());
     }
-    //no es necesario REFACTOR, el codigo es limpio
-    
-    //----------------------------------
+
     public boolean existeProducto(int id) {
         return repositorio.containsKey(id);
     }
 
     // -------------------- CRUD FIREBASE --------------------
 
-     public void crearProductoFirebase(Producto producto) {
-    if (producto == null || producto.getId() == 0 || producto.getNombre() == null) {
-        throw new IllegalArgumentException("Producto inválido");
+    public void crearProductoFirebase(Producto producto) {
+        if (producto == null || producto.getId() == 0 || producto.getNombre() == null) {
+            throw new IllegalArgumentException("Producto inválido");
+        }
+
+        FirebaseUtil.inicializarUnaVez();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("productos")
+                .child(String.valueOf(producto.getId()));
+
+        ref.setValueAsync(producto);
     }
-
-    FirebaseConfig.inicializarFirebase();
-
-    DatabaseReference ref = FirebaseDatabase.getInstance()
-        .getReference("productos")
-        .child(String.valueOf(producto.getId()));
-
-    ref.setValueAsync(producto);
-    }
-
-
 
     public void buscarProductoPorIdFirebase(int id) {
-        FirebaseConfig.inicializarFirebase();
+        FirebaseUtil.inicializarUnaVez();
+
         DatabaseReference ref = FirebaseDatabase.getInstance()
-            .getReference("productos")
-            .child(String.valueOf(id));
+                .getReference("productos")
+                .child(String.valueOf(id));
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -106,12 +96,13 @@ public class ProductoService {
     }
 
     public void eliminarProductoFirebase(int id) {
-        FirebaseConfig.inicializarFirebase();
+        FirebaseUtil.inicializarUnaVez();
+
         DatabaseReference ref = FirebaseDatabase.getInstance()
-            .getReference("productos")
-            .child(String.valueOf(id));
+                .getReference("productos")
+                .child(String.valueOf(id));
+
         ref.removeValueAsync();
         System.out.println("Producto eliminado de Firebase.");
     }
 }
-
