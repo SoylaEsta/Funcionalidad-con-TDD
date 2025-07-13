@@ -82,5 +82,14 @@ public class ProductoServiceTest {
     assertTrue(service.listarProductos().isEmpty());
     }
 
+    @Test
+    void testListarProductos_conProductos() {
+    service.crearProducto(new Producto(1, "Teclado", 19990.0));
+    service.crearProducto(new Producto(2, "Mouse", 9990.0));
+
+    assertEquals(2, service.listarProductos().size());
+    }
+
+
 }
 
