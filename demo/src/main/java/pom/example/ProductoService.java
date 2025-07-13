@@ -39,10 +39,11 @@ public class ProductoService {
 
     //----------------------------------
 
-    public void eliminarProducto(int id) {
+   /*  public void eliminarProducto(int id) {
         repositorio.remove(id);
-    }
+    } */
 
+    //----------------------------------
     public List<Producto> listarProductos() {
         return new ArrayList<>(repositorio.values());
     }

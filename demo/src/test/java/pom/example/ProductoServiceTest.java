@@ -56,5 +56,14 @@ public class ProductoServiceTest {
     }
 
 
+    // ----------- ELIMINAR PRODUCTO -----------
+    @Test
+    void testEliminarProducto_inexistente() {
+    assertDoesNotThrow(() -> {
+        service.eliminarProducto(999); // ID no creado
+    });
+    }
+
+
 }
 
