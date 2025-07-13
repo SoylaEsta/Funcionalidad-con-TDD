@@ -19,17 +19,25 @@ public class ProductoService {
         }
     }
 
-
     public Producto buscarProductoPorId(int id) {
         return repositorio.get(id);
     }
 
+    //----------------------------------
+    
     public void actualizarProducto(Producto producto) {
-        if (!repositorio.containsKey(producto.getId())) {
-            throw new IllegalArgumentException("Producto no encontrado");
-        }
-        repositorio.put(producto.getId(), producto);
-    } 
+    validarExistencia(producto.getId());
+    repositorio.put(producto.getId(), producto);
+    }
+
+    private void validarExistencia(int id) {
+    if (!repositorio.containsKey(id)) {
+        throw new IllegalArgumentException("Producto no encontrado");
+    }
+    }
+
+
+    //----------------------------------
 
     public void eliminarProducto(int id) {
         repositorio.remove(id);

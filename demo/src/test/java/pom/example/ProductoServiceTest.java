@@ -12,7 +12,7 @@ public class ProductoServiceTest {
     void setUp() {
         service = new ProductoService();
     }
-    //CREAR PRODUCTO
+    // ----------- CREAR PRODUCTO -----------
     @Test
     void testCrearProducto_conIdDuplicado() {
         Producto p1 = new Producto(105, "Router", 24990.0);
@@ -32,7 +32,7 @@ public class ProductoServiceTest {
         });
     }
     
-    //ACTUALIZAR PRODUCTO
+    // ----------- ACTUALIZAR PRODUCTO -----------
     @Test
     void testActualizarProducto_inexistente() {
         Producto nuevo = new Producto(5, "SSD 256GB", 39990.0);
@@ -42,6 +42,18 @@ public class ProductoServiceTest {
         });
     }
 
+    @Test
+    void testActualizarProducto_exitosamente() {
+        Producto original = new Producto(6, "Monitor", 99990.0);
+        service.crearProducto(original);
+
+        Producto actualizado = new Producto(6, "Monitor 24 pulgadas", 109990.0);
+        service.actualizarProducto(actualizado);
+
+        Producto resultado = service.buscarProductoPorId(6);
+        assertEquals("Monitor 24 pulgadas", resultado.getNombre());
+        assertEquals(109990.0, resultado.getPrecio());
+    }
 
 
 }
