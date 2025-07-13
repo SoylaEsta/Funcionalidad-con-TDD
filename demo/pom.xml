@@ -13,9 +13,8 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-
+    
     <dependencies>
-
         <!--  Junit  -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -61,6 +60,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>pom/example/FirebaseTest.class</exclude>
+                        <exclude>pom/example/FirebaseCrudTest.class</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
 
             <!-- Surefire (para JUnit) -->

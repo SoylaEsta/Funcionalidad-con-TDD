@@ -75,7 +75,7 @@ public class ProductoServiceTest {
     }
 
     
-    // ----------- ELIMINAR PRODUCTO -----------
+    // ----------- LISTAR PRODUCTO -----------
 
     @Test
     void testListarProductos_inicialmenteVacio() {
@@ -89,6 +89,53 @@ public class ProductoServiceTest {
 
     assertEquals(2, service.listarProductos().size());
     }
+
+    // ----------- BUSCAR PRODUCTO -----------
+    @Test
+    void testBuscarProducto_noExistente() {
+    Producto resultado = service.buscarProductoPorId(500);
+    assertNull(resultado);
+    }
+
+
+    // ----------- EXISTE PRODUCTO -----------
+    @Test
+    void testExisteProducto_trueYFalse() {
+    Producto p = new Producto(88, "Power Bank", 25990.0);
+    service.crearProducto(p);
+
+    assertTrue(service.existeProducto(88));
+    assertFalse(service.existeProducto(999)); // no existe
+    }
+
+
+    // ----------- INICIAR FIREBASE -----------
+    @Test
+    void testInicializarFirebase_noLanzaError() {
+    assertDoesNotThrow(() -> FirebaseConfig.inicializarFirebase());
+    }
+
+    // ----------- CREAR PRODUCTO FIREBASE -----------
+    @Test
+    void testCrearProductoFirebase_valido() {
+    Producto producto = new Producto(108, "Mouse inalámbrico", 15990.0);
+    assertDoesNotThrow(() -> {
+        service.crearProductoFirebase(producto);
+    });
+    }
+
+    // ----------- GETTERS & SETTERS -----------
+    @Test
+    void testGettersYSetters() {
+    Producto p = new Producto(1, "Producto", 1000.0);
+    p.setId(2);
+    p.setNombre("Nuevo");
+    p.setPrecio(2000.0);
+
+    assertEquals(2, p.getId());
+    assertEquals("Nuevo", p.getNombre());
+    assertEquals(2000.0, p.getPrecio());
+}
 
 
 }
