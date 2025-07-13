@@ -51,7 +51,7 @@ public class ProductoService {
     public List<Producto> listarProductos() {
         return new ArrayList<>(repositorio.values());
     }
-    
+    //no es necesario REFACTOR, el codigo es limpio
     
     //----------------------------------
     public boolean existeProducto(int id) {
