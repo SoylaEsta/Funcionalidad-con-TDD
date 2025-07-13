@@ -8,9 +8,17 @@ public class ProductoService {
 
     // -------------------- CRUD LOCAL --------------------
 
-     public void crearProducto(Producto producto) {
-        repositorio.put(producto.getId(), producto);
+    public void crearProducto(Producto producto) {
+    validarIdUnico(producto.getId());
+    repositorio.put(producto.getId(), producto);
+}
+
+    private void validarIdUnico(int id) {
+        if (repositorio.containsKey(id)) {
+            throw new IllegalArgumentException("ID duplicado");
+        }
     }
+
 
     public Producto buscarProductoPorId(int id) {
         return repositorio.get(id);
@@ -38,12 +46,19 @@ public class ProductoService {
     // -------------------- CRUD FIREBASE --------------------
 
      public void crearProductoFirebase(Producto producto) {
-       FirebaseConfig.inicializarFirebase();
+    if (producto == null || producto.getId() == 0 || producto.getNombre() == null) {
+        throw new IllegalArgumentException("Producto inválido");
+    }
+
+    FirebaseConfig.inicializarFirebase();
+
     DatabaseReference ref = FirebaseDatabase.getInstance()
-            .getReference("productos")
-            .child(String.valueOf(producto.getId()));
-        ref.setValueAsync(producto);
-    } 
+        .getReference("productos")
+        .child(String.valueOf(producto.getId()));
+
+    ref.setValueAsync(producto);
+    }
+
 
 
     public void buscarProductoPorIdFirebase(int id) {

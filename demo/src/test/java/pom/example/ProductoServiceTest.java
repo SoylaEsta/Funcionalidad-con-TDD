@@ -1,25 +1,34 @@
-package pom.example; 
+package pom.example;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pom.example.ProductoService;
-import pom.example.Producto;
 import static org.junit.jupiter.api.Assertions.*;
 
-
- // Este método aún NO existe → el test fallará  → RED
 public class ProductoServiceTest {
 
-   
-    @Test
-    void testCrearProducto_red() {
-        ProductoService service = new ProductoService();
-        Producto nuevo = new Producto(2, "Monitor", 492990.0);
+    private ProductoService service;
 
-    
-        service.crearProducto(nuevo);
-
-        Producto resultado = service.buscarProductoPorId(1);
-        assertNotNull(resultado);
+    @BeforeEach
+    void setUp() {
+        service = new ProductoService();
     }
 
+    @Test
+    void testCrearProducto_conIdDuplicado() {
+        Producto p1 = new Producto(105, "Router", 24990.0);
+        Producto p2 = new Producto(105, "Router Pro", 34990.0);
 
+        service.crearProducto(p1);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.crearProducto(p2);
+        });
+    }
+
+    @Test
+    void testCrearProductoFirebase_productoInvalido() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            service.crearProductoFirebase(null);
+        });
+    }
 }

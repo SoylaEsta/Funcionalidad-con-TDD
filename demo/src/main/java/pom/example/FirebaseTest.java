@@ -8,7 +8,7 @@ public class FirebaseTest {
         FirebaseConfig.inicializarFirebase();
 
         ProductoService service = new ProductoService();
-        Producto producto = new Producto(123, "Teclado mecánico", 29990.0);
+        Producto producto = new Producto(104, "Audífonos Bluetooth", 35990.0);
 
         service.crearProductoFirebase(producto);
 
