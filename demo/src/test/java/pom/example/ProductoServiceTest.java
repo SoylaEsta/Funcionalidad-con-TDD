@@ -74,5 +74,13 @@ public class ProductoServiceTest {
     assertFalse(service.existeProducto(20)); // el producto ya no debe estar
     }
 
+    
+    // ----------- ELIMINAR PRODUCTO -----------
+
+    @Test
+    void testListarProductos_inicialmenteVacio() {
+    assertTrue(service.listarProductos().isEmpty());
+    }
+
 }
 

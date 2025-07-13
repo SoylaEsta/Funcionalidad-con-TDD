@@ -48,10 +48,12 @@ public class ProductoService {
 
 
     //----------------------------------
-    public List<Producto> listarProductos() {
+    /*public List<Producto> listarProductos() {
         return new ArrayList<>(repositorio.values());
-    }
-
+    }*/
+    
+    
+    //----------------------------------
     public boolean existeProducto(int id) {
         return repositorio.containsKey(id);
     }
